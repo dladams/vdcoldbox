@@ -1,0 +1,4 @@
+# Tp prevent hang and then job failure due to failed attemtp to access DB.
+# See Redmine 26015/9
+services.DetectorPropertiesService.GetReadOutWindowSizefromSamweb: false
+services.DetectorPropertiesService.GetHVDriftfromSamweb: false

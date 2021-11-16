@@ -1,0 +1,45 @@
+# vdproc.fcl
+
+#include "vdcoldbox_raw_dataprep.fcl"
+#include "vdcb_tools.fcl"
+
+physics.producers.caldata.LogLevel: 3
+
+services.RawDigitPrepService.ToolNames: [
+  digitReader,            # Unpack the digits acd.raw[] and acd.pedestal
+  vdbcb_adcChannelFembIdPlotter,     # Plot FEMB ID (1-14)
+  vdbcb_adcChannelAsicPlotter,       # Plot ASIC ID (1-8)
+  vdbcb_adcChannelFembChanPlotter,   # Plot FEMB channel
+  vdbcb_adcChannelPedestalPlotter,   # Plot pedestals
+  vdbcb_adcChannelRawRmsPlotter,     # Plot ADC-pedestal RMS
+  vdcbg_adcChannelFembIdPlotter,     # Plot FEMB ID
+  vdcbg_adcChannelPedestalPlotter,   # Plot pedestals
+  vdcbg_adcChannelRawRmsPlotter,     # Plot ADC-pedestal RMS
+  cht_vdbcbu_raw,
+  cht_vdbcby_raw,
+  cht_vdbcbz_raw,
+  chtzraw,
+  adcSampleFiller,        # Fill acd.samples from acd.raw - pedestal
+  adcScaleAdcToKe,        # Apply (nominal) charge calibration.
+  cht_vdbcbu_prp,
+  cht_vdbcby_prp,
+  cht_vdbcbz_prp,
+  chtzprp,
+  vdbcb_adcChannelSamRmsPlotter,     # Plot ADC-pedestal RMS
+  vdbcb_adcChannelSamRms30Plotter,
+  vdbcb_adcChannelSamRms50Plotter,
+  adcRoiTreeMaker,
+  adcKeepAllSignalFinder  # Flag all samples as signal, i.e. acd.signal[] = true
+]
+
+tools.adcScaleAdcToKe.ScaleFactor: 0.025
+
+tools.vdbcb_adcChannelSamRmsPlotter.MetricMax: 1.25
+tools.vdbcb_adcChannelSamRms30Plotter.MetricMax: 25.0
+
+tools.vdbcb_adcChannelSamRmsPlotter.PlotFileName: "chmet_samrms_%CRNAME%_run%0RUN%_evt%0EVENT%.{png,tpad}"
+
+tools.adcRoiTreeMaker.MetadataFields: [apaFembID, fembChannel, samRms, samRms30, samRms50]
+#physics.producers.caldata.Event: 2
+
+#include "evsel.fcl"
