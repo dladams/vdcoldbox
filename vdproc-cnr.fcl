@@ -17,7 +17,8 @@ services.RawDigitPrepService.ToolNames: [
   vdcbg_adcChannelRawRmsPlotter,     # Plot ADC-pedestal RMS
   adcSampleFiller,        # Fill acd.samples from acd.raw - pedestal
   adcScaleAdcToKe,        # Apply (nominal) charge calibration.
-  vdcb_fembNoiseRemovalKe,
+  #vdcb_fembNoiseRemovalKe,
+  vdbcb_cnr,
   cht_vdbcbu_prp,
   cht_vdbcby_prp,
   cht_vdbcbz_prp,

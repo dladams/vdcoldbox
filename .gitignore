@@ -1,3 +1,6 @@
 vdproc
 vdproc-cnr
 top
+*.fcldump
+*.tmp
+*,log

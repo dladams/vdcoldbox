@@ -5,7 +5,7 @@ Available commands:
 
 * Generate dsiplays and metric vs. channel plots for one event:
 <pre>
-./doOneEvent dovdproc 11990 5
+./doOneEvent vdproc 11990 5
 </pre>
 
 Useful links
