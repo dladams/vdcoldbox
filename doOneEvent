@@ -49,6 +49,6 @@ if [ ! -r $DSFILE ]; then
 fi
 echo duneproc $ACT vdcb$FRUN/$XFCL noxrootd $OPT
 duneproc $ACT $DSNAME/$XFCL noxrootd $OPT
-echo Output directoyr: $OUTDIR
+echo Output directory: $OUTDIR
 cp $RUNDIR/*.png $OUTDIR
 ls -ls $OUTDIR

@@ -1,0 +1,11 @@
+
+tools.tickRanges.plotTicks.end:   8192
+tools.raw_vdbcbu_prp.Rebin: 8
+tools.raw_vdbcby_prp.Rebin: 8
+tools.raw_vdbcbz_prp.Rebin: 8
+tools.cht_vdbcbu_prp.Rebin: 8
+tools.cht_vdbcby_prp.Rebin: 8
+tools.cht_vdbcbz_prp.Rebin: 8
+tools.sig_vdbcbu_prp.Rebin: 8
+tools.sig_vdbcby_prp.Rebin: 8
+tools.sig_vdbcbz_prp.Rebin: 8

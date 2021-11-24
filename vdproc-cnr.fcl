@@ -15,13 +15,16 @@ services.RawDigitPrepService.ToolNames: [
   vdcbg_adcChannelFembIdPlotter,     # Plot FEMB ID
   vdcbg_adcChannelPedestalPlotter,   # Plot pedestals
   vdcbg_adcChannelRawRmsPlotter,     # Plot ADC-pedestal RMS
-  adcSampleFiller,        # Fill acd.samples from acd.raw - pedestal
-  adcScaleAdcToKe,        # Apply (nominal) charge calibration.
-  #vdcb_fembNoiseRemovalKe,
-  vdbcb_cnr,
+  adcSampleFiller,                   # Fill acd.samples from acd.raw - pedestal
+  adcScaleAdcToKe,                   # Apply (nominal) charge calibration.
+  vdbcb_cnr,                         # Remove channel-correlated noise
+  vdcb_noiseSignalFinder,            # Find ROIs
   cht_vdbcbu_prp,
   cht_vdbcby_prp,
   cht_vdbcbz_prp,
+  cht_vdbcbu_sig,
+  cht_vdbcby_sig,
+  cht_vdbcbz_sig,
   chtuprp,
   chtyprp,
   chtzprp,
