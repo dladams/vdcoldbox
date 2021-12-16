@@ -1,0 +1,14 @@
+# vdproc.fcl
+
+#include "vdcoldbox_raw_dataprep.fcl"
+
+physics.producers.caldata.LogLevel: 3
+
+services.RawDigitPrepService.ToolNames: [
+  @sequence::data.vdbcb_dataprep_seqs.nomcal_cnr,
+  cht_vdbcbu_prp,
+  cht_vdbcby_prp,
+  cht_vdbcbz_prp
+]
+
+#include "evsel.fcl"

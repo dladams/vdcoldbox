@@ -39,11 +39,13 @@ tools.adcScaleAdcToKe.ScaleFactor: 0.025
 
 tools.vdbcb_adcChannelRawRmsPlotter.MetricMax: 100
 tools.vdbcb_adcChannelSamRmsPlotter.MetricMax: 1.25
-tools.vdbcb_adcChannelSamRms30Plotter.MetricMax: 20
-tools.vdbcb_adcChannelSamRms30Plotter.MetricMax: 25.82
+tools.vdbcb_adcChannelSamRms30Plotter.MetricMax: 10
+tools.vdbcb_adcChannelSamRms50Plotter.MetricMax: 10
 
 tools.vdbcb_adcChannelSamRmsPlotter.PlotFileName: "chmet_samrms_%CRNAME%_run%0RUN%_evt%0EVENT%.{png,tpad}"
 tools.vdbcb_adcChannelSamRmsPlotter.HistTitle: "Sample RMS after CNR for run %RUN% event %EVENT% %CRLABEL%"
+tools.vdbcb_adcChannelSamRms30Plotter.HistTitle: "Sample RMS after CNR for run %RUN% event %EVENT% %CRLABEL%"
+tools.vdbcb_adcChannelSamRms50Plotter.HistTitle: "Sample RMS after CNR for run %RUN% event %EVENT% %CRLABEL%"
 #tools.vdbcb_adcChannelSamRmsPlotter.MetricMax: 20
 
 tools.adcRoiTreeMaker.MetadataFields: [apaFembID, fembChannel, samRms, samRms30, samRms50]

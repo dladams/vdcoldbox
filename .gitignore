@@ -1,5 +1,8 @@
 vdproc
 vdproc-cnr
+vdproc-cnrw
+vdwfraw
+vdwfraw-wide
 top
 *.fcldump
 *.tmp
