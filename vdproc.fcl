@@ -34,14 +34,15 @@ services.RawDigitPrepService.ToolNames: [
 
 tools.adcScaleAdcToKe.ScaleFactor: 0.025
 
-tools.vdbcb_adcChannelSamRmsPlotter.MetricMax: 1.25
+tools.vdbcb_adcChannelSamRmsPlotter.MetricMax: 0.80
+tools.vdbcb_adcChannelSamRmsPlotter.MetricMax: 0.80
 tools.vdbcb_adcChannelSamRms30Plotter.MetricMax: 10.0
 tools.vdbcb_adcChannelSamRms50Plotter.MetricMax: 10.0
 
 # For noisy data
-tools.vdbcb_adcChannelSamRmsPlotter.MetricMax: 25.0   # TEMPORARY
-tools.vdbcb_adcChannelSamRms30Plotter.MetricMax: 600.0
-tools.vdbcb_adcChannelSamRms50Plotter.MetricMax: 1000.0
+#tools.vdbcb_adcChannelSamRmsPlotter.MetricMax: 25.0   # TEMPORARY
+#tools.vdbcb_adcChannelSamRms30Plotter.MetricMax: 600.0
+#tools.vdbcb_adcChannelSamRms50Plotter.MetricMax: 1000.0
 
 tools.vdbcb_adcChannelSamRmsPlotter.PlotFileName: "chmet_samrms_%CRNAME%_run%0RUN%_evt%0EVENT%.{png,tpad}"
 

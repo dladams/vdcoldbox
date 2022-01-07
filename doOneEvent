@@ -21,7 +21,7 @@ FRUN=0$RUN
 FEVT=$EVT
 while [ ${#FEVT} -lt 3 ]; do FEVT=0$FEVT; done
 XFCL=event$FEVT
-OUTDIR=$HOME/xfer/2021/$(date +%m%d)/$ACT/run$FRUN/$XFCL
+OUTDIR=$HOME/xfer/$(date +%Y)/$(date +%m%d)/$ACT/run$FRUN/$XFCL
 RUNDIR=$ACT/vdcb$FRUN/$XFCL
 
 # Check the fcl exists
@@ -29,8 +29,8 @@ REM=$ACT
 while [ $REM != . ]; do
   FCL=$(basename $REM)
   if ! fcldump $FCL.fcl 2>&1 1>/dev/null; then
-    echo Fcl not found: $FCL.fcl
-    exit 1
+    echo Skipping Fcl not found: $FCL.fcl
+    #exit 1
   fi
   REM=$(dirname $REM)
 done
@@ -50,5 +50,5 @@ fi
 echo duneproc $ACT vdcb$FRUN/$XFCL noxrootd $OPT
 duneproc $ACT $DSNAME/$XFCL noxrootd $OPT
 echo Output directory: $OUTDIR
-cp $RUNDIR/*.png $OUTDIR
+cp $RUNDIR/*.png $RUNDIR/*.tpad $OUTDIR
 ls -ls $OUTDIR
