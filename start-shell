@@ -1,0 +1,19 @@
+#!/bin/sh
+#
+# start-shell
+#
+# David Adams
+# May 2022
+#
+# Start a bash shell to run the analysis scripts here.
+#
+# User must first have set up dunerun.
+
+DRV=$(dunerunVersion 2>/dev/null)
+if [ -z "$DRV" ]; then
+  echo Please first set up dunerun.
+  exit 1
+fi
+
+dunerun-check-proxy
+dune-run -e dunesw,xrd542,duneproc shell

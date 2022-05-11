@@ -1,5 +1,6 @@
 # vdcoldbox
-Sofware to analyzing data from the 2021 vertical-drift cold box test.
+
+Software to analyze data from the 2021 vertical-drift cold box test.
 
 Available commands:
 
