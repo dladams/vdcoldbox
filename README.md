@@ -4,7 +4,7 @@ Software to analyze data from the 2021 vertical-drift cold box test.
 
 Available commands:
 
-* Generate dsiplays and metric vs. channel plots for one event with
+* Generate displays and metric vs. channel plots for one event with
 no CNR, unweighted CNR and rawRMS-weighted CNR::
 <pre>
 ./doOneEvent vdproc 11990 5
