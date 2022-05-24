@@ -35,7 +35,7 @@ and "command not found" suggest *dunerun* was not intslled properly.
 
 Here are some intersting things to do inside this environment.
 
-### Define datasets
+### Datasets
 
 We make use of *duneproc* which uses it's own notion of datasets to define the event input for a run.
 A *duneproc* dataset is just a collection of (logical) file names.
@@ -46,16 +46,35 @@ that use sam to locate the files of interest.
 
 This a little different from sam which defines a data set with a query that is used to select files at run time.
 A sam query is typically used to identify the files that comprise a *duneproc* dataset.
-Common dataset definitions is a run, a file in a run or a
-Available commands:
+Common dataset definitions include all files from a run, a single file in a run, and a set of contiguous event numbers in a run.
+There is a find file command for the VD coldbox data:
+<pre>
+duneproc> vdbcbFindFiles 11990
+np02_bde_coldbox_run011990_0000_20211104T091015.hdf5
+</pre>
 
-* Generate displays and metric vs. channel plots for one event with
+More to come: staging, caching, ...
+
+### DQM
+
+The following can be used to study single events, here event 5 in run 11990.
+
+Generate displays and metric vs. channel plots for one event with
 no CNR, unweighted CNR and rawRMS-weighted CNR::
 <pre>
 ./doOneEvent vdproc 11990 5
 ./doOneEvent vdproc-cnr 11990 5
 ./doOneEvent vdproc-cnrw 11990 5
 </pre>
+
+The script here builds the dataset (if needed) and issues the *duneproc* command to process the single event.
+Due to limitations in the art event loop and the lack of a DUNE event DB, all events in all files for the run are scanned
+evne thought the TPC data are read and processed only for the specified event.
+
+Note that if this is command is run in a browser using an jupyter analysis station such https://analytics-hub.fnal.gov, then
+you can navigate to the run directory and view the resulting plots in the browser.
+
+### More to come...
 
 ## Useful links
 
