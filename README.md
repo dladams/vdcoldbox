@@ -58,8 +58,7 @@ More to come: staging, caching, ...
 ### DQM
 
 The following can be used to study single events, here event 5 in run 11990.
-
-Generate displays and metric vs. channel plots for one event with
+They generate event displays and metric vs. channel plots for one event respectively with
 no CNR, unweighted CNR and rawRMS-weighted CNR::
 <pre>
 ./doOneEvent vdproc 11990 5
