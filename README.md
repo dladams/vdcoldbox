@@ -3,7 +3,7 @@
 David Adams  
 May 2022
 
-Software to analyze data from the 2021 vertical-drift cold box test.
+Software to analyze data from the 2021-22 vertical-drift cold box tests.
 
 ## Installation
 
@@ -29,13 +29,13 @@ duneproc>
 Here the version of *dunesw* is that specified when *dunerun* was installed.
 If you do not get the duneproc prompt, look for and resolve any error messages.
 Unable to find *duneproc* setup means that product was not installed in the same area as *dunerun*
-and "command not found" suggest *dunerun* was not intslled properly.
+and "command not found" suggests *dunerun* was not installed properly.
 
 ## Running
 
-Here are some intersting things to do inside this environment.
+Here are some interesting things to do inside this environment.
 
-### Datasets
+### Define datasets
 
 We make use of *duneproc* which uses it's own notion of datasets to define the event input for a run.
 A *duneproc* dataset is just a collection of (logical) file names.
@@ -55,7 +55,7 @@ np02_bde_coldbox_run011990_0000_20211104T091015.hdf5
 
 More to come: staging, caching, ...
 
-### DQM
+### Generate DQM plots
 
 The following can be used to study single events, here event 5 in run 11990.
 They generate event displays and metric vs. channel plots for one event respectively with
