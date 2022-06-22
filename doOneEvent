@@ -47,8 +47,8 @@ if [ ! -r $DSFILE ]; then
   echo Unable to find $DSFILE
   exit 2
 fi
-echo duneproc $ACT vdcb$FRUN/$XFCL noxrootd $OPT
-duneproc $ACT $DSNAME/$XFCL noxrootd $OPT
+echo duneproc $ACT vdcb$FRUN/$XFCL $OPT
+duneproc $ACT $DSNAME/$XFCL $OPT
 echo Output directory: $OUTDIR
 cp $RUNDIR/*.png $RUNDIR/*.tpad $OUTDIR
 ls -ls $OUTDIR
