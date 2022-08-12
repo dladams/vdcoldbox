@@ -82,4 +82,4 @@ you can navigate to the run directory and view the resulting plots in the browse
 * [Channel associations](https://cdcvs.fnal.gov/redmine/attachments/download/65665/vdcb_try2_offline_numbers_detector_strips.pdf)
 * [Run list for the Dec 2021 data](https://docs.google.com/spreadsheets/d/1JgQOv247h2tZKABBrK74LP3OenXL0vBJRn_uz9lKlrc)
 * [Run list for BDE April-May 2022](https://docs.google.com/spreadsheets/d/1HSlHqMSSjlwgjpSRbHmaFRFWhb8ffSscm-nQMb22IDo/edit#gid=2099089212)
-* July 2022 data taken wiuth CRP2 (1st full TDE): runs 1521-1524, 1527-1531, 1543-1547, 1553-1555, 1571-1575, 1594-1597, 1604, 1611-1618
+* July 2022 data taken cold with CRP2 (1st full TDE): runs 1521-1524, 1527-1531, 1543-1547, 1553-1555, 1571-1575, 1594-1597, 1604, 1611-1618
