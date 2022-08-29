@@ -1,0 +1,55 @@
+#!/bin/sh
+
+ACT=$1
+RUN=$2
+EVT=$3
+OPT=$4
+if [ "$1" = "-h" -o -z "$ACT" -o -z "$RUN" -o -z "$EVT" ]; then
+  echo "Usage $0 ACT RUN EVT [OPT]"
+  echo "   or $0 ACT RUN_FILE EVT [OPT]"
+  echo "  Top level fcl is ACT.fcl"
+  echo "  RUN = run number or RUN_FILE"
+  echo "  EVT = event number"
+  echo "  OPT = option for duneproc, e.g. retry"
+  exit 0
+fi
+if ! [ $EVT -eq $EVT ] 2>/dev/null; then
+  echo EVT must be a number
+  exit 1
+fi
+FRUN=$RUN
+while [ ${#FRUN} -lt 6 ]; do FRUN=0$FRUN; done
+FEVT=$EVT
+while [ ${#FEVT} -lt 3 ]; do FEVT=0$FEVT; done
+XFCL=event$FEVT
+OUTDIR=$HOME/xfer/$(date +%Y)/$(date +%m%d)/$ACT/run$FRUN/$XFCL
+RUNDIR=$ACT/vdct$FRUN/$XFCL
+
+# Check the fcl exists
+REM=$ACT
+while [ $REM != . ]; do
+  FCL=$(basename $REM)
+  if ! fcldump $FCL.fcl 2>&1 1>/dev/null; then
+    echo Skipping Fcl not found: $FCL.fcl
+    #exit 1
+  fi
+  REM=$(dirname $REM)
+done
+
+if [ ! -r $OUTDIR ]; then
+  echo Creating output directory $OUTDIR
+  mkdir -p $OUTDIR
+fi
+
+vdtcbFindFiles $(basename $RUN) -
+DSNAME=vdtcb$FRUN
+DSFILE=$HOME/data/dune/datasets/vdct/$DSNAME.txt
+if [ ! -r $DSFILE ]; then
+  echo Unable to find $DSFILE
+  exit 2
+fi
+echo duneproc $ACT vdtcb$FRUN/$XFCL $OPT
+duneproc $ACT $DSNAME/$XFCL $OPT
+echo Output directory: $OUTDIR
+cp $RUNDIR/*.png $RUNDIR/*.tpad $OUTDIR
+ls -ls $OUTDIR
