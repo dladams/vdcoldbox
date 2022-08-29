@@ -77,7 +77,16 @@ you can navigate to the run directory and view the resulting plots in the browse
 
 ## Useful links
 
+### Dec 2021 data
 * [Bottom channel mapping](https://docs.dunescience.org/cgi-bin/sso/RetrieveFile?docid=23684)
 * [Top channel mapping](https://indico.cern.ch/event/1073206/contributions/4513488/attachments/2303087/3917868/cbox_chmappin_v1p1.pdf)
 * [Channel associations](https://cdcvs.fnal.gov/redmine/attachments/download/65665/vdcb_try2_offline_numbers_detector_strips.pdf)
 * [Run list for the Dec 2021 data](https://docs.google.com/spreadsheets/d/1JgQOv247h2tZKABBrK74LP3OenXL0vBJRn_uz9lKlrc)
+
+### April-May 2022 data
+* [Run list for BDE April-May 2022](https://docs.google.com/spreadsheets/d/1HSlHqMSSjlwgjpSRbHmaFRFWhb8ffSscm-nQMb22IDo/edit#gid=2099089212)
+
+### July 2022 TDE CRP2 data
+* July 2022 data taken cold with CRP2 (1st full TDE):  
+  runs 1521-1524, 1527-1531, 1543-1547, 1553-1555, 1571-1575, 1594-1597, 1604, 1611-1618
+* [Channel mapping](https://indico.fnal.gov/event/55195/contributions/245292/attachments/156692/204617/vg_crp2_cmap.pdf)
