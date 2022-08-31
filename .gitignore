@@ -4,6 +4,7 @@ vdproc-cnrw
 vdwfraw
 vdwfraw-wide
 top
+vdtproc
 *.fcldump
 *.tmp
 *,log
