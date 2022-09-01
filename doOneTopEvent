@@ -23,7 +23,7 @@ FEVT=$EVT
 while [ ${#FEVT} -lt 3 ]; do FEVT=0$FEVT; done
 XFCL=event$FEVT
 OUTDIR=$HOME/xfer/$(date +%Y)/$(date +%m%d)/$ACT/run$FRUN/$XFCL
-RUNDIR=$ACT/vdct$FRUN/$XFCL
+RUNDIR=$ACT/vdtcb$FRUN/$XFCL
 
 # Check the fcl exists
 REM=$ACT
