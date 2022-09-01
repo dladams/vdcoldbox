@@ -16,4 +16,8 @@ if [ -z "$DRV" ]; then
 fi
 
 dunerun-check-proxy
-dune-run -e dunesw,xrd542,duneproc shell
+if hostname | grep ^dunegpvm 1>/dev/null; then
+  dune-run -e dunesw,duneproc shell
+else
+  dune-run -e dunesw,xrdhdf5,duneproc shell
+fi
