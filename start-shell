@@ -17,7 +17,7 @@ fi
 
 dunerun-check-proxy
 if hostname | grep ^dunegpvm 1>/dev/null; then
-  dune-run -e dunesw,duneproc shell
+  dune-run -e dunesw,xrdhdf5,duneproc shell
 else
   dune-run -e dunesw,xrdhdf5,duneproc shell
 fi
