@@ -14,6 +14,9 @@ services.RawDigitPrepService.ToolNames: [
   vdtcb_adcChannelRawRmsPlotter
 ]
 
+# So we don't get warnings when trying to write non-existent wires.
+physics.producers.caldata.WireName: ""
+
 tools.adcScaleAdcToKe.ScaleFactor: 0.025
 
 #include "evsel.fcl"
