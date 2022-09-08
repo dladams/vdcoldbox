@@ -47,17 +47,26 @@ that use sam to locate the files of interest.
 This a little different from sam which defines a data set with a query that is used to select files at run time.
 A sam query is typically used to identify the files that comprise a *duneproc* dataset.
 Common dataset definitions include all files from a run, a single file in a run, and a set of contiguous event numbers in a run.
-There is a find file command for the VD coldbox data:
+There is a find file command for the 2021 VD (i.e. CRP1) bottom coldbox data:
 <pre>
 duneproc> vdbcbFindFiles 11990
 np02_bde_coldbox_run011990_0000_20211104T091015.hdf5
 </pre>
+and another for the CRP1 top coldbox data:
+<pre>
+duneproc> vdtcbFindFiles 429_1
+429_1_cb.test
+</pre>
+Note in the second case we have appended the DAQ group 1 to the run number 429 so we get just the first file with 60 events.
+
+Add a second argument with a directory name to write the file list to a dataset (not a sam dataset) definition file in that directory.
+If the argument '-' is used, the directory is in the standard area duneproc uses to search for dataset definitions.
 
 More to come: staging, caching, ...
 
-### Generate DQM plots
+### CRP1 bottom data
 
-The following can be used to study single events, here event 5 in run 11990.
+The following can be used to study single events in the CRP1 bottom data, here event 5 in run 11990.
 They generate event displays and metric vs. channel plots for one event respectively with
 no CNR, unweighted CNR and rawRMS-weighted CNR::
 <pre>
@@ -70,10 +79,25 @@ The script here builds the dataset (if needed) and issues the *duneproc* command
 Due to limitations in the art event loop and the lack of a DUNE event DB, all events in all files for the run are scanned
 evne thought the TPC data are read and processed only for the specified event.
 
+Note the first argument in these commands is the base name of the fcl file in the local directory (e.g. vdproc.fcl).
+Use these as templates to cretae your own fcl files to run in the same way.
+The second argument is the run number and dataset definition is constructed automatically if it does not already exist.
+The last argument is the event number.
+
 Note that if this is command is run in a browser using an jupyter analysis station such https://analytics-hub.fnal.gov, then
 you can navigate to the run directory and view the resulting plots in the browser.
 
+### CRP1 top data
+
+The following produces ADC-level event displays and pedestal and RMS vs. channel run 429 event 1 in the CRP1 top data:
+<pre>
+duneproc> ./doOneTopEvent vdtproc 429_1 1
+</pre>
+The produced plots may be found in [issue 1](https://github.com/dladams/vdcoldbox/issues/1)
+with event displays at the bottom and metric vs. channel at the top.
+
 ### More to come...
+We should add caibration and CNR to the top analysis and add support for CRP2 and following data.
 
 ## Useful links
 
