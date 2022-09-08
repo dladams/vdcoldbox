@@ -1,7 +1,7 @@
 # vdcoldbox
 
 David Adams  
-May 2022
+September 2022
 
 Software to analyze data from the 2021-22 vertical-drift cold box tests.
 
