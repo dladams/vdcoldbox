@@ -77,7 +77,7 @@ no CNR, unweighted CNR and rawRMS-weighted CNR::
 
 The script here builds the dataset (if needed) and issues the *duneproc* command to process the single event.
 Due to limitations in the art event loop and the lack of a DUNE event DB, all events in all files for the run are scanned
-evne thought the TPC data are read and processed only for the specified event.
+even thought the TPC data are read and processed only for the specified event.
 
 Note the first argument in these commands is the base name of the fcl file in the local directory (e.g. vdproc.fcl).
 Use these as templates to cretae your own fcl files to run in the same way.
@@ -93,8 +93,7 @@ The following produces ADC-level event displays and pedestal and RMS vs. channel
 <pre>
 duneproc> ./doOneTopEvent vdtproc 429_1 1
 </pre>
-The produced plots may be found in [issue 1](https://github.com/dladams/vdcoldbox/issues/1)
-with event displays at the bottom and metric vs. channel at the top.
+The produced plots may be found at the bottom of [issue 1](https://github.com/dladams/vdcoldbox/issues/1).
 
 ### More to come...
 We should add caibration and CNR to the top analysis and add support for CRP2 and following data.
