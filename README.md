@@ -103,8 +103,8 @@ Run periods from Elisabetta:
 |----|----|-----|----|
 | CRP1 | Nov-Dec 2021 | 401-1036 | RRR_FFR_cb.test |
 | CRP1B | April 2022 | 1037-1372 | RRR_FFF_cb.test |
-| CRB2 | June-July 2022 | 1373-1622 | RRR_FFF_A_cb.txt |
-| CRB3 | Septembers 2022 | 1623- | RRR_FFF_A_cb.test |
+| CRP2 | June-July 2022 | 1373-1622 | RRR_FFF_A_cb.txt |
+| CRP3 | Septembers 2022 | 1623- | RRR_FFF_A_cb.test |
 
 ### More to come...
 We should add caibration and CNR to the top analysis and add support for CRP2 and following data.
