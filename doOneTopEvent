@@ -17,13 +17,16 @@ if ! [ $EVT -eq $EVT ] 2>/dev/null; then
   echo EVT must be a number
   exit 1
 fi
+
 FRUN=$RUN
-while [ ${#FRUN} -lt 6 ]; do FRUN=0$FRUN; done
+if ! echo $FRUN | grep _ 2>/dev/null 1>/dev/null; then
+  while [ ${#FRUN} -lt 6 ]; do FRUN=0$FRUN; done
+fi
 FEVT=$EVT
+DSNAME=vdbcb-$FRUN-$FEVT
 while [ ${#FEVT} -lt 3 ]; do FEVT=0$FEVT; done
-XFCL=event$FEVT
-OUTDIR=$HOME/xfer/$(date +%Y)/$(date +%m%d)/$ACT/run$FRUN/$XFCL
-RUNDIR=$ACT/vdtcb$FRUN/$XFCL
+OUTDIR=$HOME/xfer/$(date +%Y)/$(date +%m%d)/$ACT/run$FRUN
+RUNDIR=$ACT/$DSNAME
 
 # Check the fcl exists
 REM=$ACT
@@ -35,21 +38,13 @@ while [ $REM != . ]; do
   fi
   REM=$(dirname $REM)
 done
-
 if [ ! -r $OUTDIR ]; then
   echo Creating output directory $OUTDIR
   mkdir -p $OUTDIR
 fi
 
-vdtcbFindFiles $(basename $RUN) -
-DSNAME=vdtcb$FRUN
-DSFILE=$HOME/data/dune/datasets/vdct/$DSNAME.txt
-if [ ! -r $DSFILE ]; then
-  echo Unable to find $DSFILE
-  exit 2
-fi
-echo duneproc $ACT vdtcb$FRUN/$XFCL $OPT
-duneproc $ACT $DSNAME/$XFCL $OPT
+echo duneproc $ACT $DSNAME $OPT
+duneproc $ACT $DSNAME $OPT
 echo Output directory: $OUTDIR
 cp $RUNDIR/*.png $RUNDIR/*.tpad $OUTDIR
 ls -ls $OUTDIR

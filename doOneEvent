@@ -1,28 +1,64 @@
 #!/bin/sh
 
+# Read the flags.
+DET=
+while true; do
+  if [ $# -lt 3 -o "$1" = "-h" ]; then
+    echo "Usage $0 [-t] [-b] ACT RUN EVT [OPT]"
+    echo "   -t: Run type is vdtcb (vertical-drift, top electronics coldbox)"
+    echo "   -b: Run type is vdbcb (vertical-drift, bottom electronics coldbox)"
+    echo "  ACT: Top level fcl is ACT.fcl"
+    echo "  RUN: run number"
+    echo "  EVT: event number"
+    echo "  OPT: option for duneproc, e.g. retry"
+    exit 0
+  elif [ ${1:0:1} != '-' ]; then
+    break
+  elif [ "$1" = "-b" ]; then
+    DET=vdbcb
+  elif [ "$1" = "-t" ]; then
+    DET=vdtcb
+  else:
+    echo Invalid flag:$1
+    exit 1
+  fi
+  shift
+done
+
 ACT=$1
 RUN=$2
 EVT=$3
 OPT=$4
-if [ "$1" = "-h" -o -z "$ACT" -o -z "$RUN" -o -z "$EVT" ]; then
-  echo "Usage $0 ACT RUN EVT [OPT]"
-  echo "   or $0 ACT RUN_FILE EVT [OPT]"
-  echo "  Top level fcl is ACT.fcl"
-  echo "  RUN = run number or RUN_FILE"
-  echo "  EVT = event number"
-  echo "  OPT = option for duneproc, e.g. retry"
-  exit 0
-fi
-if ! [ $EVT -eq $EVT ] 2>/dev/null; then
-  echo EVT must be a number
+if ! [ $RUN -eq $RUN ] 2>/dev/null; then
+  echo RUN must be a number: $RUN
   exit 1
 fi
-FRUN=0$RUN
+if ! [ $EVT -eq $EVT ] 2>/dev/null; then
+  echo EVT must be a number: $EVT
+  exit 1
+fi
+
+if [ -z "$DET" ]; then
+  if [ ${ACT:0:3} = vdt ]; then
+    DET=vdtcb
+  elif [ ${ACT:0:3} = vdb ]; then
+    DET=vdbcb
+  else
+    echo Unable to determine if this is top or bottom data.
+    echo Add flag -t or -b.
+    exit 1
+  fi
+fi
+
+FRUN=$RUN
+if ! echo $FRUN | grep _ 2>/dev/null 1>/dev/null; then
+  while [ ${#FRUN} -lt 6 ]; do FRUN=0$FRUN; done
+fi
 FEVT=$EVT
+DSNAME=$DET-$FRUN-$FEVT
 while [ ${#FEVT} -lt 3 ]; do FEVT=0$FEVT; done
-XFCL=event$FEVT
-OUTDIR=$HOME/xfer/$(date +%Y)/$(date +%m%d)/$ACT/run$FRUN/$XFCL
-RUNDIR=$ACT/vdcb$FRUN/$XFCL
+OUTDIR=$HOME/xfer/$(date +%Y)/$(date +%m%d)/$ACT/run$FRUN
+RUNDIR=$ACT/$DSNAME
 
 # Check the fcl exists
 REM=$ACT
@@ -34,21 +70,13 @@ while [ $REM != . ]; do
   fi
   REM=$(dirname $REM)
 done
-
 if [ ! -r $OUTDIR ]; then
   echo Creating output directory $OUTDIR
   mkdir -p $OUTDIR
 fi
 
-vdbcbFindFiles $(basename $RUN) -
-DSNAME=vdcb$FRUN
-DSFILE=$HOME/data/dune/datasets/vdcb/$DSNAME.txt
-if [ ! -r $DSFILE ]; then
-  echo Unable to find $DSFILE
-  exit 2
-fi
-echo duneproc $ACT vdcb$FRUN/$XFCL $OPT
-duneproc $ACT $DSNAME/$XFCL $OPT
+echo duneproc $ACT $DSNAME $OPT
+duneproc $ACT $DSNAME $OPT
 echo Output directory: $OUTDIR
 cp $RUNDIR/*.png $RUNDIR/*.tpad $OUTDIR
 ls -ls $OUTDIR
