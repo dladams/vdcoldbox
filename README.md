@@ -64,9 +64,12 @@ If the argument '-' is used, the directory is in the standard area duneproc uses
 
 ### Single-event datasets
 
-In addition to explicit datasets described above, implicit single-event datasets are aslo supported.
+In addition to explicit datasets described above, implicit single-event datasets are also supported.
 The names for these have the form DDD-RRR-EEE where DDD is the run type, RRR the run number and EEE the event number.
-For vertical-drift coldbox data the types (actually aliases) of interest are vdtcb and vdbcb for top and bottom data, respectively.
+For vertical-drift coldbox data the run types (actually aliases) of interest are vdtcb and vdbcb for top and bottom data, respectively.
+
+When *duneproc* receives such a dataset name, it uses the command *findRunFiles* to find the file holding the event and
+the offset to that event in the file and configures *lar* to process only that one event.
 
 ### Staging and caching
 
@@ -81,19 +84,14 @@ The following can be used to study single events in the CRP1 bottom data, here e
 They generate event displays and metric vs. channel plots for one event respectively with
 no CNR, unweighted CNR and rawRMS-weighted CNR::
 <pre>
-./doOneEvent vdproc 11990 5
-./doOneEvent vdproc-cnr 11990 5
-./doOneEvent vdproc-cnrw 11990 5
+./doOneEvent vdbproc 11990 5
+./doOneEvent vdbproc-cnr 11990 5
+./doOneEvent vdbproc-cnrw 11990 5
 </pre>
 
-The script here builds the dataset (if needed) and issues the *duneproc* command to process the single event.
-Due to limitations in the art event loop and the lack of a DUNE event DB, all events in all files for the run are scanned
-even thought the TPC data are read and processed only for the specified event.
-
-Note the first argument in these commands is the base name of the fcl file in the local directory (e.g. vdproc.fcl).
-Use these as templates to cretae your own fcl files to run in the same way.
-The second argument is the run number and dataset definition is constructed automatically if it does not already exist.
-The last argument is the event number.
+Note the first argument in these commands is the base name of the fcl file in the local directory (e.g. vdbproc.fcl).
+Use these as templates to create your own fcl files to run in the same way.
+If that name does not begin with "vdb", prepend the arguments with "-b" to indicate bottom data is being processed.
 
 Note that if this is command is run in a browser using an jupyter analysis station such https://analytics-hub.fnal.gov, then
 you can navigate to the run directory and view the resulting plots in the browser.
