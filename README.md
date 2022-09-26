@@ -62,7 +62,18 @@ Note in the second case we have appended the DAQ group 1 to the run number 429 s
 Add a second argument with a directory name to write the file list to a dataset (not a sam dataset) definition file in that directory.
 If the argument '-' is used, the directory is in the standard area duneproc uses to search for dataset definitions.
 
-More to come: staging, caching, ...
+### Single-event datasets
+
+In addition to explicit datasets described above, implicit single-event datasets are aslo supported.
+The names for these have the form DDD-RRR-EEE where DDD is the run type, RRR the run number and EEE the event number.
+For vertical-drift coldbox data the types (actually aliases) of interest are vdtcb and vdbcb for top and bottom data, respectively.
+
+### Staging and caching
+
+DUNE raw data files are stored in a tape-backed dcache system and jobs may experience delays of many minutes or hours or
+crash if the requested input files are not in the disk cache.
+To help avoid this problem, the command *stageDuneDataset* may be used.
+The single argument is the name of an explicit or implicit dataset.
 
 ### CRP1 bottom data
 
