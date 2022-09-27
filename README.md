@@ -77,6 +77,10 @@ DUNE raw data files are stored in a tape-backed dcache system and jobs may exper
 crash if the requested input files are not in the disk cache.
 To help avoid this problem, the command *stageDuneDataset* may be used.
 The single argument is the name of an explicit or implicit dataset.
+For example, to stage the file holding event 5 of top run 11990:
+<pre>
+stageDuneDataset vdbcb-11990-5
+</pre>
 
 ### CRP1 bottom data
 
