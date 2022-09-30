@@ -35,16 +35,16 @@ and "command not found" suggests *dunerun* was not installed properly.
 
 Here are some interesting things to do inside this environment.
 
-### Define datasets
+### Datasets
 
 We make use of *duneproc* which uses it's own notion of datasets to define the event input for a run.
 A *duneproc* dataset is just a collection of (logical) file names.
 The *duneproc* command finds the file list for dataset \<dsname> by searching the directory tree
-$HOME/data/dune/datasets/ for a file names \<dsname>.txt.
-You can create these by hand, copy or link some else's definitions or use *duneproc* scripts
-that use sam to locate the files of interest.
+$HOME/data/dune/datasets/ for a file name \<dsname>.txt.
+You can create these by hand, copy or link some else's definitions or use the *duneproc* scripts
+that use sam to locate the files for a run.
 
-This a little different from sam which defines a data set with a query that is used to select files at run time.
+This definition of a dataset differs from that of sam which defines a data set with a query that is used to select files at run time.
 A sam query is typically used to identify the files that comprise a *duneproc* dataset.
 Common dataset definitions include all files from a run, a single file in a run, and a set of contiguous event numbers in a run.
 There is a find file command for the 2021 VD (i.e. CRP1) bottom coldbox data:
@@ -54,10 +54,21 @@ np02_bde_coldbox_run011990_0000_20211104T091015.hdf5
 </pre>
 and another for the CRP1 top coldbox data:
 <pre>
-duneproc> vdtcbFindFiles 429_1
-429_1_cb.test
+duneproc> vdtcbFindFiles 429 -
+429_100_cb.test
+429_101_cb.test
+429_102_cb.test
+429_103_cb.test
+429_104_cb.test
+.
+.
+.
+429_97_cb.test
+429_98_cb.test
+429_99_cb.test
+429_9_cb.test
+Dataset written to /home/dladams/data/dune/datasets/vdct/vdtcb000429.txt
 </pre>
-Note in the second case we have appended the DAQ group 1 to the run number 429 so we get just the first file with 60 events.
 
 Add a second argument with a directory name to write the file list to a dataset (not a sam dataset) definition file in that directory.
 If the argument '-' is used, the directory is in the standard area duneproc uses to search for dataset definitions.
@@ -73,7 +84,7 @@ the offset to that event in the file and configures *lar* to process only that o
 
 ### Staging and caching
 
-DUNE raw data files are stored in a tape-backed dcache system and jobs may experience delays of many minutes or hours or
+DUNE raw data files are stored in a tape-backed dcache system and jobs may experience delays of many minutes, hours or
 crash if the requested input files are not in the disk cache.
 To help avoid this problem, the command *stageDuneDataset* may be used.
 The single argument is the name of an explicit or implicit dataset.
