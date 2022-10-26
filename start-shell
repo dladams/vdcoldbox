@@ -9,9 +9,16 @@
 #
 # User must first have set up dunerun.
 
+DUV=$1
 DRV=$(dunerunVersion 2>/dev/null)
 if [ -z "$DRV" ]; then
-  echo Please first set up dunerun.
+  echo Setting up a local installation of dunerun and duneproc.
+  source ./setup_deps.sh $DUV
+  DRV=$(dunerunVersion 2>/dev/null)
+fi
+
+if [ -z "$DRV" ]; then
+  echo It appears dunerun is still not set up.
   exit 1
 fi
 
