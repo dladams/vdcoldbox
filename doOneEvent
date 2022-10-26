@@ -38,11 +38,13 @@ if ! [ $EVT -eq $EVT ] 2>/dev/null; then
   exit 1
 fi
 
+EVSEL=
 if [ -z "$DET" ]; then
   if [ ${ACT:0:3} = vdt ]; then
     DET=vdtcb
   elif [ ${ACT:0:3} = vdb ]; then
     DET=vdbcb
+    EVSEL=true
   else
     echo Unable to determine if this is top or bottom data.
     echo Add flag -t or -b.
@@ -57,6 +59,9 @@ fi
 FEVT=$EVT
 DSNAME=$DET-$FRUN-$FEVT
 while [ ${#FEVT} -lt 3 ]; do FEVT=0$FEVT; done
+if [ $EVSEL = true ]; then
+  DSNAME=$DSNAME/event$FEVT
+fi
 OUTDIR=$HOME/xfer/$(date +%Y)/$(date +%m%d)/$ACT/run$FRUN
 RUNDIR=$ACT/$DSNAME
 
