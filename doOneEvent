@@ -82,7 +82,12 @@ fi
 
 echo duneproc $ACT $DSNAME $OPT
 duneproc $ACT $DSNAME $OPT
+RSTAT=$?
 echo Output directory: $OUTDIR
+if [ $RSTAT -gt 0 ]; then
+  echo ERROR: Processing failed with error $RSTAT
+  exit $RSTAT
+fi
 cp $RUNDIR/*.png $RUNDIR/*.tpad $OUTDIR
 ls -ls $OUTDIR
 
