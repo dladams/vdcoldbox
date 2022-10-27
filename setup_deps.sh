@@ -24,7 +24,11 @@ gitclone() {
 }
 
 dune_version() {
- echo ${1:-v09_61_00d00}
+  if [ -z "$1" -o "$1" = - -o "$1" = . ]; then
+    echo v09_61_00d00
+  else
+    echo $1
+  fi
 }
 
 build_deps() {
