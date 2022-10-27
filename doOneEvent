@@ -59,7 +59,7 @@ fi
 FEVT=$EVT
 DSNAME=$DET-$FRUN-$FEVT
 while [ ${#FEVT} -lt 3 ]; do FEVT=0$FEVT; done
-if [ $EVSEL = true ]; then
+if [ "$EVSEL" = true ]; then
   DSNAME=$DSNAME/event$FEVT
 fi
 OUTDIR=$HOME/xfer/$(date +%Y)/$(date +%m%d)/$ACT/run$FRUN
