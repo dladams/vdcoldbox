@@ -1,0 +1,6 @@
+To set up:
+> ./start_shell -
+
+Example commands:
+> ./doOneEvent vdbproc 11990 5
+> ./doOneEvent vdtproc 429 1
