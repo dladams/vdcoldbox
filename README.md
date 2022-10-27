@@ -123,7 +123,7 @@ duneproc> ./doOneEvent vdtproc 429 1
 </pre>
 The produced plots may be found at the bottom of [issue 1](https://github.com/dladams/vdcoldbox/issues/1).
 
-### CRP top run periods
+#### CRP top run periods
 
 Run periods from Elisabetta:
 
@@ -136,6 +136,9 @@ Run periods from Elisabetta:
 
 ### More to come...
 We should add caibration and CNR to the top analysis and add support for CRP2 and following data.
+
+## Tutorials
+[tutorial01](doc/tutorial01) shows how to install this package.
 
 ## Useful links
 
