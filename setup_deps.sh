@@ -8,10 +8,6 @@ docom() {
   return $?
 }
 
-writecom() {
-  echo $* >>$OUTFIL
-}
-
 gitclone() {
   local PKG=$1
   if [ ! -r $PKG ]; then
@@ -39,13 +35,12 @@ build_deps() {
   local PKGDIR=$BASDIR/pkgs
   local RUNDIR=$(pwd)
   local INSDIR=$BASDIR/install/$DUNE_VERSION
-  local OUTFIL=$(pwd)/setup_deps
   export DUNE_INSTALL_BASE=$INSDIR
-  export DUNE_BUILD_BASE=/tmp/$USER/vdcoldbox-deps/build/$DUNE_VERSION
+  export DUNE_BUILD_BASE=$BASDIR/build/$DUNE_VERSION
 
   if [ $1 = clean ]; then
     echo "===== Cleaning ====="
-    rm -rf $BASDIR $OUTFIL
+    rm -rf $BASDIR
   fi
 
   echo
@@ -71,7 +66,7 @@ build_deps() {
   fi
 
   echo
-  echo "===== Building dunebuild ====="
+  echo "===== Building duneproc ====="
   source $DUNE_INSTALL_BASE/dunerun/setup.sh
   if [ ! -r $INSDIR/dunebuild ]; then
     docom "dune-run -e dunebuild duneproc/build"

@@ -85,3 +85,7 @@ duneproc $ACT $DSNAME $OPT
 echo Output directory: $OUTDIR
 cp $RUNDIR/*.png $RUNDIR/*.tpad $OUTDIR
 ls -ls $OUTDIR
+
+echo Copying view.ipynb to $RUNDIR
+cp view.ipynb $RUNDIR
+
