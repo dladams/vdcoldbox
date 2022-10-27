@@ -1,0 +1,119 @@
+#!/bin/bash
+
+IS_SOURCED=
+if [ $0 != $BASH_SOURCE ]; then
+  IS_SOURCED=true
+  echo Script is being sourced. There is no reason to do this.
+else
+  set -e
+  echo Script is not being sourced.
+fi
+
+gitclone() {
+  PKG=$1
+  if [ ! -r $PKG ]; then
+    GITURL=https://github.com/dladams/$PKG.git
+    if [ $USER = dladams ]; then
+      GITURL=git@github.com:dladams/$PKG.git
+    fi
+    git clone $GITURL $2
+  fi
+}
+
+DUNE_VERSION=v09_61_00d00
+BASDIR=$HOME/vd-demo01
+DOCLEAN=
+DOINSTALL=
+DOSHELL=
+while [ $# -gt 0 ]; do
+  ARG=$1
+  shift
+  if [ $ARG = clean ]; then
+    DOCLEAN=true
+  elif [ $ARG = install ]; then
+    DOINSTALL=true
+  elif [ $ARG = shell ]; then
+    DOSHELL=true
+  elif [ $ARG = -d ]; then
+    BASDIR=$1
+    shift
+  elif [ $ARG = -v ]; then
+    DUNE_VERSION=$1
+    shift
+  else
+    echo Invalid argument: $ARG
+    exit 1
+  fi
+done
+
+RUNBAS=$BASDIR/run
+RUNDIR=$RUNBAS/vdcoldbox
+echo
+echo "  DUNE_VERSION: $DUNE_VERSION"
+echo "Base directory: $BASDIR"
+echo " Run directory: $RUNDIR"
+
+if [ -n "$DOCLEAN" ]; then
+  echo "===== Cleaning ====="
+  rm -rf $BASDIR
+fi
+
+if [ -n "$DOINSTALL" ]; then
+  PKGDIR=$BASDIR/pkgs
+  if [ ! -r $PKGDIR ]; then
+    mkdir -p $PKGDIR
+    cd $PKGDIR
+    echo
+    echo "===== Cloning ====="
+    gitclone dunerun
+    gitclone duneproc
+    echo
+    echo "===== Building ====="
+    export DUNE_INSTALL_BASE=$BASDIR/install/$DUNE_VERSION
+    export DUNE_BUILD_BASE=/tmp/$USER/build/$DUNE_VERSION
+    dunerun/build -v $DUNE_VERSION
+    source $DUNE_INSTALL_BASE/dunerun/setup.sh
+    dune-run -e dunebuild duneproc/build
+  fi
+fi
+
+if [ ! -r $RUNDIR ]; then
+  echo
+  echo "===== Create run directory ====="
+  mkdir -p $RUNBAS
+  cd $RUNBAS
+  gitclone vdcoldbox
+  cd vdcoldbox
+  ls -ls
+fi
+
+echo
+echo Run directory listing:
+cd $RUNDIR
+ls -ls
+
+if [ -n "$DOSHELL" ]; then
+  echo
+  echo "===== Put user in analysis shell ====="
+  if [ -n "$DOINSTALL" ]; then
+    ./start-shell
+  else
+    ./start-shell -
+  fi
+else
+  echo
+  echo To set up the package:
+  echo "  cd $RUNDIR"
+  if [ -n "$DOINSTALL" ]; then
+    echo "  ./start-shell"
+  else
+    echo "  ./start-shell -"
+  fi
+  echo or
+  echo "  $0 shell"
+  echo
+  echo Example commands:
+  echo "  ./doOneEvent vdbproc 11990 5"
+  echo "  ./doOneEvent vdtproc 429 1"
+  echo 
+fi
