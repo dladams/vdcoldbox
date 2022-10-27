@@ -1,7 +1,7 @@
 # vdcoldbox
 
 David Adams  
-September 2022
+October 2022
 
 Software to analyze data from the 2021-22 vertical-drift cold box tests.
 
@@ -16,6 +16,7 @@ This is a top-level package that does not require any building. Simply check it 
 
 Most of the functionality provided by this package does require that [*dunerun*](https://github.com/dladams/dunerun) and
 [*duneproc*](https://github.com/dladams/dunerun) be installed. See those pages for instructions.
+Or if you don't install these, they will be automatically installed in the *deps* subdirectory of this package.
 
 ## Set up
 
@@ -30,6 +31,9 @@ Here the version of *dunesw* is that specified when *dunerun* was installed.
 If you do not get the duneproc prompt, look for and resolve any error messages.
 Unable to find *duneproc* setup means that product was not installed in the same area as *dunerun*
 and "command not found" suggests *dunerun* was not installed properly.
+
+If dunerun is not set up, then it will be set up from ./deps and, if not installed there, it and the other
+required package will be installed there.
 
 ## Running
 
