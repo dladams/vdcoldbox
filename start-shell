@@ -3,28 +3,34 @@
 # start-shell
 #
 # David Adams
-# May 2022
+# October 2022
 #
 # Start a bash shell to run the analysis scripts here.
 #
-# User must first have set up dunerun.
+# If dunerun is set up and no argument is provided, then the
+# the current dunerun is used start a shell with the environment
+# required to run this package.
+#
+# If an argument specifying a DUNE release, e.g. v09_61_00d00, is
+# provided then dunerun installed in ./deps is set up and used to
+# to start the shell. The argument '-' may be used to obtain a
+# default (and presumably recent and working) release.
+#
+# The required packages for the requested release are installed
+# ./deps if not already present.
 
 DUV=$1
-DRV=$(dunerunVersion 2>/dev/null)
-if [ -z "$DRV" ]; then
-  echo Setting up a local installation of dunerun and duneproc.
+if [ -n "$DUV" ]; then
+  echo Setting up local dunerun for DUNE release $DUV.
   source ./setup_deps.sh $DUV
   DRV=$(dunerunVersion 2>/dev/null)
 fi
 
+DRV=$(dunerunVersion 2>/dev/null)
 if [ -z "$DRV" ]; then
-  echo It appears dunerun is still not set up.
+  echo It appears dunerun is not set up.
   exit 1
 fi
 
 dunerun-check-proxy
-if hostname | grep ^dunegpvm 1>/dev/null; then
-  dune-run -e dunesw,xrdhdf5,duneproc shell
-else
-  dune-run -e dunesw,xrdhdf5,duneproc shell
-fi
+dune-run -e dunesw,xrdhdf5,duneproc shell

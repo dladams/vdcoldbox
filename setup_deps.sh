@@ -1,7 +1,7 @@
 #!/bin/bash
 
 docom() {
-  COM="$*"
+  local COM="$*"
   echo
   echo $COM
   $COM
@@ -13,7 +13,7 @@ writecom() {
 }
 
 gitclone() {
-  PKG=$1
+  local PKG=$1
   if [ ! -r $PKG ]; then
     GITURL=https://github.com/dladams/$PKG.git
     if [ $USER = dladams ]; then
@@ -29,51 +29,51 @@ dune_version() {
 
 build_deps() {
 
-DUNE_VERSION=${1:-v09_61_00d00}
-BASDIR=$(pwd)/deps
-PKGDIR=$BASDIR/pkgs
-RUNDIR=$(pwd)
-INSDIR=$BASDIR/install/$DUNE_VERSION
-OUTFIL=$(pwd)/setup_deps
-export DUNE_INSTALL_BASE=$INSDIR
-export DUNE_BUILD_BASE=/tmp/$USER/vdcoldbox-deps/build/$DUNE_VERSION
+  local THISDIR=$(pwd)
+  local DUNE_VERSION=${1:-v09_61_00d00}
+  local BASDIR=$(pwd)/deps
+  local PKGDIR=$BASDIR/pkgs
+  local RUNDIR=$(pwd)
+  local INSDIR=$BASDIR/install/$DUNE_VERSION
+  local OUTFIL=$(pwd)/setup_deps
+  export DUNE_INSTALL_BASE=$INSDIR
+  export DUNE_BUILD_BASE=/tmp/$USER/vdcoldbox-deps/build/$DUNE_VERSION
 
-if [ $1 = clean ]; then
-  echo "===== Cleaning ====="
-  rm -rf $BASDIR $OUTFIL
-fi
-
-echo
-echo "===== Creating directories ====="
-for DIR in $PKGDIR; do
-  if [ ! -r $DIR ]; then
-    docom mkdir -p $DIR
+  if [ $1 = clean ]; then
+    echo "===== Cleaning ====="
+    rm -rf $BASDIR $OUTFIL
   fi
-done
 
-echo
-echo "===== Cloning ====="
-docom cd $PKGDIR
-gitclone dunerun
-gitclone duneproc
+  echo
+  echo "===== Creating directories ====="
+  for DIR in $PKGDIR; do
+    if [ ! -r $DIR ]; then
+      docom mkdir -p $DIR
+    fi
+  done
 
-echo
-echo "===== Building ====="
-docom "cd $PKGDIR"
-ls -ls
-if [ ! -r $INSDIR/dunerun ]; then
-  docom "dunerun/build -v $DUNE_VERSION"
-fi
-source $DUNE_INSTALL_BASE/dunerun/setup.sh
-if [ ! -r $INSDIR/dunebuild ]; then
-  docom "dune-run -e dunebuild duneproc/build"
-fi
+  echo
+  echo "===== Cloning ====="
+  docom cd $PKGDIR
+  gitclone dunerun
+  gitclone duneproc
 
-rm -rf $OUTFIL
-writecom source $INSDIR/dunerun/setup.sh
-echo Created $OUTFIL
-writecom INSDIR=$INSDIR
+  echo
+  echo "===== Building dunerun ====="
+  docom "cd $PKGDIR"
+  ls -ls
+  if [ ! -r $INSDIR/dunerun ]; then
+    docom "dunerun/build -v $DUNE_VERSION"
+  fi
 
+  echo
+  echo "===== Building dunebuild ====="
+  source $DUNE_INSTALL_BASE/dunerun/setup.sh
+  if [ ! -r $INSDIR/dunebuild ]; then
+    docom "dune-run -e dunebuild duneproc/build"
+  fi
+
+  cd $THISDIR
 }
 
 _THISFILE=$(readlink -f $BASH_SOURCE)
