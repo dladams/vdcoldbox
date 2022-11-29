@@ -1,7 +1,7 @@
 # vdcoldbox
 
 David Adams  
-October 2022
+November 2022
 
 Software to analyze data from the 2021-22 vertical-drift cold box tests.
 
@@ -16,7 +16,7 @@ This is a top-level package that does not require any building. Simply check it 
 
 Most of the functionality provided by this package does require that [*dunerun*](https://github.com/dladams/dunerun) and
 [*duneproc*](https://github.com/dladams/dunerun) be installed. See those pages for instructions.
-Or if you don't install these, they will be automatically installed in the *deps* subdirectory of this package.
+If you prefer, they may be automatically installed as described below.
 
 ## Set up
 
@@ -32,8 +32,10 @@ If you do not get the duneproc prompt, look for and resolve any error messages.
 Unable to find *duneproc* setup means that product was not installed in the same area as *dunerun*
 and "command not found" suggests *dunerun* was not installed properly.
 
-If dunerun is not set up, then it will be set up from ./deps and, if not installed there, it and the other
-required package will be installed there.
+Alternatively, dunerun and duneproc will be installed automatically in ./deps and set up from there is a DUNE release tag is specified at set up, e.g.
+<pre>
+dunerun> ./start-shell v09_44_00d00
+</pre>
 
 ## Running
 
@@ -99,13 +101,13 @@ stageDuneDataset vdbcb-11990-5
 
 ### CRP1 bottom data
 
-The following can be used to study single events in the CRP1 bottom data, here event 5 in run 11990.
+The following can be used to generate performance plots for single events in the CRP1 bottom data, here event 5 in run 11990.
 They generate event displays and metric vs. channel plots for one event respectively with
 no CNR, unweighted CNR and rawRMS-weighted CNR::
 <pre>
-./doOneEvent vdbproc 11990 5
-./doOneEvent vdbproc-cnr 11990 5
-./doOneEvent vdbproc-cnrw 11990 5
+./doOneEvent vdb1proc 11990 5
+./doOneEvent vdb1proc-cnr 11990 5
+./doOneEvent vdb1proc-cnrw 11990 5
 </pre>
 
 Note the first argument in these commands is the base name of the fcl file in the local directory (e.g. vdbproc.fcl).
