@@ -28,7 +28,7 @@ done
 ACT=$1
 RUN=$2
 EVT=$3
-OPT=$4
+OPT="$4 $5 $6"
 if ! [ $RUN -eq $RUN ] 2>/dev/null; then
   echo RUN must be a number: $RUN
   exit 1
@@ -59,7 +59,7 @@ fi
 FEVT=$EVT
 DSNAME=$DET-$FRUN-$FEVT
 while [ ${#FEVT} -lt 3 ]; do FEVT=0$FEVT; done
-if [ $EVSEL = true ]; then
+if [ "$EVSEL" = true ]; then
   DSNAME=$DSNAME/event$FEVT
 fi
 OUTDIR=$HOME/xfer/$(date +%Y)/$(date +%m%d)/$ACT/run$FRUN
@@ -82,6 +82,10 @@ fi
 
 echo duneproc $ACT $DSNAME $OPT
 duneproc $ACT $DSNAME $OPT
+
+echo Copying view.ipynb to $RUNDIR
+cp view.ipynb $RUNDIR
+
 echo Output directory: $OUTDIR
 cp $RUNDIR/*.png $RUNDIR/*.tpad $OUTDIR
 ls -ls $OUTDIR
