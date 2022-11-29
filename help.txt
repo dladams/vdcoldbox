@@ -1,0 +1,13 @@
+To set up:
+> ./start_shell -
+
+Check your proxy.
+> dunerun-check-proxy
+
+Stage a single-event dataset.
+> stageDuneDataset vdbcb-11990-5
+> stageDuneDataset vdtcb-429-5
+
+Example commands:
+> ./doOneEvent vdbproc 11990 5
+> ./doOneEvent vdtproc 429 1
