@@ -41,10 +41,10 @@ dunerun> ./start-shell v09_63_01d00
 
 Here are some interesting things to do inside this environment.
 
-### Datasets
+### Explicit datasets
 
 We make use of *duneproc* which uses it's own notion of datasets to define the event input for a run.
-A *duneproc* dataset is just a collection of (logical) file names.
+A *duneproc* explicit dataset is just a collection of (logical) event file names.
 The *duneproc* command finds the file list for dataset \<dsname> by searching the directory tree
 $HOME/data/dune/datasets/ for a file name \<dsname>.txt.
 You can create these by hand, copy or link some else's definitions or use the *duneproc* scripts
@@ -52,13 +52,13 @@ that use sam to locate the files for a run.
 
 This definition of a dataset differs from that of sam which defines a data set with a query that is used to select files at run time.
 A sam query is typically used to identify the files that comprise a *duneproc* dataset.
-Common dataset definitions include all files from a run, a single file in a run, and a set of contiguous event numbers in a run.
-There is a find file command for the 2021 VD (i.e. CRP1) bottom coldbox data:
+Common dataset definitions include all files from a run, a single file in a run, and the files containing a set of contiguous event numbers in a run.
+Dataset definiton files for a run may be created with a find file command for the VD bottom coldbox data:
 <pre>
 duneproc> vdbcbFindFiles 11990
 np02_bde_coldbox_run011990_0000_20211104T091015.hdf5
 </pre>
-and another for the CRP1 top coldbox data:
+and another for the VD top coldbox data:
 <pre>
 duneproc> vdtcbFindFiles 429 -
 429_100_cb.test
@@ -76,13 +76,18 @@ duneproc> vdtcbFindFiles 429 -
 Dataset written to /home/dladams/data/dune/datasets/vdct/vdtcb000429.txt
 </pre>
 
-Add a second argument with a directory name to write the file list to a dataset (not a sam dataset) definition file in that directory.
+Add a second argument with a directory name to write the file list to a dataset definition file in that directory.
 If the argument '-' is used, the directory is in the standard area duneproc uses to search for dataset definitions.
+This was done in the second example abovew.
+The dataset name includes the run number and is the base name without extension of the dataset file, vdtcb000429 in the example above.
 
-### Single-event datasets
+### Implicit (single-event datasets)
 
-In addition to explicit datasets described above, implicit single-event datasets are also supported.
-The names for these have the form DDD-RRR-EEE where DDD is the run type, RRR the run number and EEE the event number.
+In addition to explicit datasets described above, there is also support for implicit datasets, i.e. those for which no
+explicit dataset definition file exists.
+At present, the only type of these are single-event datasets with names in the the form DDD-RRR-EEE where DDD is the run type,
+RRR the run number and EEE the event number.
+The latter two may contain any number of leading zeros.
 For vertical-drift coldbox data the run types (actually aliases) of interest are vdtcb and vdbcb for top and bottom data, respectively.
 
 When *duneproc* receives such a dataset name, it uses the command *findRunFiles* to find the file holding the event and
@@ -98,6 +103,9 @@ For example, to stage the file holding event 5 of top run 11990:
 <pre>
 stageDuneDataset vdbcb-11990-5
 </pre>
+The script list files as the are staged (or found to be already staged) finally producing with the message "Done" when all files are staged.
+It does not terminate and may be interrupted with ctrl-C with the file staging continuaing in the background.
+Run the command again to get the name of the log file with the list of staged files.
 
 ### CRP1 bottom data
 
@@ -115,7 +123,7 @@ Use these as templates to create your own fcl files to run in the same way.
 If that name does not begin with "vdb", prepend the arguments with "-b" to indicate bottom data is being processed.
 
 Note that if this is command is run in a browser using an jupyter analysis station such https://analytics-hub.fnal.gov, then
-you can navigate to the run directory and view the resulting plots in the browser.
+you can navigate to the run directory and view the resulting plots in the browser or using the view notebook in that directory.
 
 ### CRP1 top data
 
