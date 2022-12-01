@@ -29,12 +29,12 @@ duneproc>
 </pre>
 Here the version of *dunesw* is that specified when *dunerun* was installed.
 If you do not get the duneproc prompt, look for and resolve any error messages.
-Unable to find *duneproc* setup means that product was not installed in the same area as *dunerun*
-and "command not found" suggests *dunerun* was not installed properly.
+*Unable to find duneproc setup* means that product was not installed in the same area as *dunerun*
+and *command not found* suggests *dunerun* was not installed properly.
 
 Alternatively, dunerun and duneproc will be installed automatically in ./deps and set up from there is a DUNE release tag is specified at set up, e.g.
 <pre>
-dunerun> ./start-shell v09_44_00d00
+dunerun> ./start-shell v09_63_01d00
 </pre>
 
 ## Running
