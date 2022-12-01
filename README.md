@@ -107,7 +107,11 @@ The script list files as the are staged (or found to be already staged) finally 
 It does not terminate and may be interrupted with ctrl-C with the file staging continuaing in the background.
 Run the command again to get the name of the log file with the list of staged files.
 
-### CRP1 bottom data
+### Processing single events
+This package emphasizes the processing of single events to generate dataprep event displays and plots of various metric (e.g. noise) vs. channel number.
+The script *doOneEvent* is provided for this purpose. It calls *duneproc* which in turn issues the *lar* command.
+
+#### CRP1 bottom data
 
 The following can be used to generate performance plots for single events in the CRP1 bottom data, here event 5 in run 11990.
 They generate event displays and metric vs. channel plots for one event respectively with
@@ -125,7 +129,7 @@ If that name does not begin with "vdb", prepend the arguments with "-b" to indic
 Note that if this is command is run in a browser using an jupyter analysis station such https://analytics-hub.fnal.gov, then
 you can navigate to the run directory and view the resulting plots in the browser or using the view notebook in that directory.
 
-### CRP1 top data
+#### CRP1 top data
 
 The following produces ADC-level event displays and pedestal and RMS vs. channel run 429 event 1 in the CRP1 top data:
 <pre>
