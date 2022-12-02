@@ -1,7 +1,7 @@
-# vdtproc.fcl
+# vdt1proc.fcl
 
 #include "vdcoldbox_raw_tdedataprep.fcl"
-#include "vdcb_tools.fcl"
+#include "vdcb1_tools.fcl"
 
 physics.producers.caldata.LogLevel: 3
 
@@ -17,7 +17,5 @@ services.RawDigitPrepService.ToolNames: [
 # So we don't get warnings when trying to write non-existent wires.
 services.RawDigitPrepService.DoWires: false
 physics.producers.caldata.WireName: ""
-
-tools.adcScaleAdcToKe.ScaleFactor: 0.025
 
 #include "evsel.fcl"

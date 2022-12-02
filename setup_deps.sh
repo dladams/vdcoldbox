@@ -21,7 +21,7 @@ gitclone() {
 
 dune_version() {
   if [ -z "$1" -o "$1" = - -o "$1" = . ]; then
-    echo v09_61_00d00
+    echo v09_64_00d00
   else
     echo $1
   fi
