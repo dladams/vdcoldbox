@@ -133,7 +133,7 @@ you can navigate to the run directory and view the resulting plots in the browse
 
 The following produces ADC-level event displays and pedestal and RMS vs. channel run 429 event 1 in the CRP1 top data:
 <pre>
-duneproc> ./doOneEvent vdtproc 429 1
+duneproc> ./doOneEvent vdt1proc 429 1
 </pre>
 The produced plots may be found at the bottom of [issue 1](https://github.com/dladams/vdcoldbox/issues/1).
 
