@@ -1,7 +1,7 @@
 # vdcoldbox
 
 David Adams  
-October 2022
+November 2022
 
 Software to analyze data from the 2021-22 vertical-drift cold box tests.
 
@@ -16,7 +16,7 @@ This is a top-level package that does not require any building. Simply check it 
 
 Most of the functionality provided by this package does require that [*dunerun*](https://github.com/dladams/dunerun) and
 [*duneproc*](https://github.com/dladams/dunerun) be installed. See those pages for instructions.
-Or if you don't install these, they will be automatically installed in the *deps* subdirectory of this package.
+If you prefer, they may be automatically installed as described below.
 
 ## Set up
 
@@ -29,20 +29,22 @@ duneproc>
 </pre>
 Here the version of *dunesw* is that specified when *dunerun* was installed.
 If you do not get the duneproc prompt, look for and resolve any error messages.
-Unable to find *duneproc* setup means that product was not installed in the same area as *dunerun*
-and "command not found" suggests *dunerun* was not installed properly.
+*Unable to find duneproc setup* means that product was not installed in the same area as *dunerun*
+and *command not found* suggests *dunerun* was not installed properly.
 
-If dunerun is not set up, then it will be set up from ./deps and, if not installed there, it and the other
-required package will be installed there.
+Alternatively, dunerun and duneproc will be installed automatically in ./deps and set up from there is a DUNE release tag is specified at set up, e.g.
+<pre>
+dunerun> ./start-shell v09_63_01d00
+</pre>
 
 ## Running
 
 Here are some interesting things to do inside this environment.
 
-### Datasets
+### Explicit datasets
 
 We make use of *duneproc* which uses it's own notion of datasets to define the event input for a run.
-A *duneproc* dataset is just a collection of (logical) file names.
+A *duneproc* explicit dataset is just a collection of (logical) event file names.
 The *duneproc* command finds the file list for dataset \<dsname> by searching the directory tree
 $HOME/data/dune/datasets/ for a file name \<dsname>.txt.
 You can create these by hand, copy or link some else's definitions or use the *duneproc* scripts
@@ -50,13 +52,13 @@ that use sam to locate the files for a run.
 
 This definition of a dataset differs from that of sam which defines a data set with a query that is used to select files at run time.
 A sam query is typically used to identify the files that comprise a *duneproc* dataset.
-Common dataset definitions include all files from a run, a single file in a run, and a set of contiguous event numbers in a run.
-There is a find file command for the 2021 VD (i.e. CRP1) bottom coldbox data:
+Common dataset definitions include all files from a run, a single file in a run, and the files containing a set of contiguous event numbers in a run.
+Dataset definiton files for a run may be created with a find file command for the VD bottom coldbox data:
 <pre>
 duneproc> vdbcbFindFiles 11990
 np02_bde_coldbox_run011990_0000_20211104T091015.hdf5
 </pre>
-and another for the CRP1 top coldbox data:
+and another for the VD top coldbox data:
 <pre>
 duneproc> vdtcbFindFiles 429 -
 429_100_cb.test
@@ -74,13 +76,18 @@ duneproc> vdtcbFindFiles 429 -
 Dataset written to /home/dladams/data/dune/datasets/vdct/vdtcb000429.txt
 </pre>
 
-Add a second argument with a directory name to write the file list to a dataset (not a sam dataset) definition file in that directory.
+Add a second argument with a directory name to write the file list to a dataset definition file in that directory.
 If the argument '-' is used, the directory is in the standard area duneproc uses to search for dataset definitions.
+This was done in the second example abovew.
+The dataset name includes the run number and is the base name without extension of the dataset file, vdtcb000429 in the example above.
 
-### Single-event datasets
+### Implicit (single-event datasets)
 
-In addition to explicit datasets described above, implicit single-event datasets are also supported.
-The names for these have the form DDD-RRR-EEE where DDD is the run type, RRR the run number and EEE the event number.
+In addition to explicit datasets described above, there is also support for implicit datasets, i.e. those for which no
+explicit dataset definition file exists.
+At present, the only type of these are single-event datasets with names in the the form DDD-RRR-EEE where DDD is the run type,
+RRR the run number and EEE the event number.
+The latter two may contain any number of leading zeros.
 For vertical-drift coldbox data the run types (actually aliases) of interest are vdtcb and vdbcb for top and bottom data, respectively.
 
 When *duneproc* receives such a dataset name, it uses the command *findRunFiles* to find the file holding the event and
@@ -96,16 +103,23 @@ For example, to stage the file holding event 5 of top run 11990:
 <pre>
 stageDuneDataset vdbcb-11990-5
 </pre>
+The script list files as the are staged (or found to be already staged) finally producing with the message "Done" when all files are staged.
+It does not terminate and may be interrupted with ctrl-C with the file staging continuaing in the background.
+Run the command again to get the name of the log file with the list of staged files.
 
-### CRP1 bottom data
+### Processing single events
+This package emphasizes the processing of single events to generate dataprep event displays and plots of various metric (e.g. noise) vs. channel number.
+The script *doOneEvent* is provided for this purpose. It calls *duneproc* which in turn issues the *lar* command.
 
-The following can be used to study single events in the CRP1 bottom data, here event 5 in run 11990.
+#### CRP1 bottom data
+
+The following can be used to generate performance plots for single events in the CRP1 bottom data, here event 5 in run 11990.
 They generate event displays and metric vs. channel plots for one event respectively with
 no CNR, unweighted CNR and rawRMS-weighted CNR::
 <pre>
-./doOneEvent vdbproc 11990 5
-./doOneEvent vdbproc-cnr 11990 5
-./doOneEvent vdbproc-cnrw 11990 5
+./doOneEvent vdb1proc 11990 5
+./doOneEvent vdb1proc-cnr 11990 5
+./doOneEvent vdb1proc-cnrw 11990 5
 </pre>
 
 Note the first argument in these commands is the base name of the fcl file in the local directory (e.g. vdbproc.fcl).
@@ -113,13 +127,13 @@ Use these as templates to create your own fcl files to run in the same way.
 If that name does not begin with "vdb", prepend the arguments with "-b" to indicate bottom data is being processed.
 
 Note that if this is command is run in a browser using an jupyter analysis station such https://analytics-hub.fnal.gov, then
-you can navigate to the run directory and view the resulting plots in the browser.
+you can navigate to the run directory and view the resulting plots in the browser or using the view notebook in that directory.
 
-### CRP1 top data
+#### CRP1 top data
 
 The following produces ADC-level event displays and pedestal and RMS vs. channel run 429 event 1 in the CRP1 top data:
 <pre>
-duneproc> ./doOneEvent vdtproc 429 1
+duneproc> ./doOneEvent vdt1proc 429 1
 </pre>
 The produced plots may be found at the bottom of [issue 1](https://github.com/dladams/vdcoldbox/issues/1).
 
