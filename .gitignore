@@ -1,8 +1,8 @@
 deps
-vdbproc
-vdbproc-cnr
-vdbproc-cnr
-vdtproc
+vdb1proc
+vdb1proc-cnr
+vdb1proc-cnrw
+vdt1proc
 top
 vdtproc
 *.fcldump
