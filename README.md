@@ -137,7 +137,18 @@ duneproc> ./doOneEvent vdt1proc 429 1
 </pre>
 The produced plots may be found at the bottom of [issue 1](https://github.com/dladams/vdcoldbox/issues/1).
 
-#### CRP top run periods
+#### CRP2+ top data
+
+Top data was taken in 2022 with CRP2 and CRP3. These have very similar geometry and are collectively referenced as CRP2+.
+Configurations are provided to create single event displays and noise vs. channel plots for raw (pedestal subtracted), calibrated
+(common rough charge calibration) and calibrated with CNR (coherent noise removal) and weighted CNR.
+The top-level fcl for these is vdt2proc-XXX.fcl with XXX = raw, cal, cnr and cnw, respectively. E.g.
+
+<pre>
+duneproc> ./doOneEvent vdt2proc-cal 1727 1
+</pre>
+  
+#### CRU top run periods
 
 Run periods from Elisabetta:
 
