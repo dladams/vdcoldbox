@@ -3,6 +3,10 @@ vdb1proc
 vdb1proc-cnr
 vdb1proc-cnrw
 vdt1proc
+vdt2proc-raw
+vdt2proc-cal
+vdt2proc-cnr
+vdt2proc-cnw
 top
 vdtproc
 *.fcldump

@@ -1,0 +1,24 @@
+# vdt2proc-cnw.fcl
+#
+# David Adams
+# December 2022
+#
+# Run dataprep  with weighted CNR for vertical-drift CRP2+ top data.
+
+#include "vdcb2t_dataprep.fcl"
+#include "vdcb2_tools.fcl"
+
+services.RawDigitPrepService.ToolNames: [
+  digitReader,               # Unpack the digits acd.raw[] and acd.pedestal
+  adcSampleFiller,           # Fill acd.samples from acd.raw - pedestal
+  vdtcb2_adcScaleAdcToKe,    # Apply (nominal) charge calibration.
+  vdtcb2_cnrw,
+  cht_vdcb2_prp,
+  vdcb2_adcChannelPedestalPlotter,
+  vdcb2_adcChannelSamRmsPlotter,
+  vdcb2_adcChannelSamRms30Plotter,
+  vdcb2_adcChannelSamRms50Plotter
+]
+
+# Prefix for plot file names.
+tools.adcStringBuilder.TpmPrefix: "cnw-"

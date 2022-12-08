@@ -1,0 +1,22 @@
+# vdt2proc.fcl
+#
+# David Adams
+# December 2022
+#
+# Run dataprep on raw data for vertical-drift CRP2+ top data.
+
+#include "vdcb2t_dataprep.fcl"
+#include "vdcb2_tools.fcl"
+
+services.RawDigitPrepService.ToolNames: [
+  digitReader,            # Unpack the digits acd.raw[] and acd.pedestal
+  cht_vdcb2_raw,
+  vdcb2_adcChannelPedestalPlotter,
+  vdcb2_adcChannelRawRmsPlotter
+]
+
+# So we don't get warnings when trying to write non-existent wires.
+services.RawDigitPrepService.DoWires: false
+physics.producers.caldata.WireName: ""
+
+##include "evsel.fcl"
