@@ -159,6 +159,8 @@ Run periods from Elisabetta:
 | CRP2 | June-July 2022 | 1373-1622 | RRR_FFF_A_cb.txt |
 | CRP3 | Septembers 2022 | 1623- | RRR_FFF_A_cb.test |
 
+For more information, see talk by laura Zambelli at https://indico.fnal.gov/event/57419.
+
 ### More to come...
 We should add caibration and CNR to the top analysis and add support for CRP2 and following data.
 
