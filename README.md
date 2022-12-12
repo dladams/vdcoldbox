@@ -181,7 +181,6 @@ of these runs.
 The second set of CRP2 data were taken after repairing problems causing many dead channels.
 
 ### More to come...
-We should add calibration and CNR to the top analysis and add support for CRP2 and following data.
 
 ## Tutorials
 [tutorial01](doc/tutorial01) shows how to install this package.
