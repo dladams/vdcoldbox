@@ -150,7 +150,7 @@ duneproc> ./doOneEvent vdt2proc-cal 1727 1
   
 #### CRU top run periods
 
-Run periods from Elisabetta:
+Run periods from Elisabetta and sam:
 
 | | | Runs | File names |
 |----|----|-----|----|
@@ -159,7 +159,25 @@ Run periods from Elisabetta:
 | CRP2 | June-July 2022 | 1373-1622 | RRR_FFF_A_cb.txt |
 | CRP3 | Septembers 2022 | 1623- | RRR_FFF_A_cb.test |
 
-For more information, see talk by laura Zambelli at https://indico.fnal.gov/event/57419.
+Cosmic runs from Laura Zambelli (https://indico.fnal.gov/event/57419):
+
+| Date | E-field | Date | Runs |
+|---|---|---|---|
+| CRP2 | nominal | 7/13/2022 | 1521-4, 1527-31 |
+| | | 7/18/2022 | 1543-47 |
+| | | 7/19/2022 | 1553-55 |
+| CRP3 | nominal | 10/11/2022 | 1723-24 |
+| | | 10/12/2022 | 1727-43  |
+| | | 10/14/2022 | 1779 |
+| | | 10/15/2022 | 1797 |
+| CRP2 | high | 11/3/2022| 1857-71 |
+| | nominal | 11/4/2022 | 1883-86, 1892 |
+| | high | 11/4/2022 | 1893, 1895-98 |
+
+The nominal HV setting is (-1260, -360, 0, 900) V and high is (-1400, -450, 0, 950) V.
+The above talk includes estimates of filed strength and electron lifetime for some
+of these runs.
+The second set of CRP2 data wre taken after repairing problems causing many dead channels.
 
 ### More to come...
 We should add caibration and CNR to the top analysis and add support for CRP2 and following data.
