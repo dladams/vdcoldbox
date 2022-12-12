@@ -156,7 +156,7 @@ Run periods from Elisabetta and sam:
 |----|----|-----|----|
 | CRP1 | Nov-Dec 2021 | 401-1036 | RRR_FFR_cb.test |
 | CRP1B | April 2022 | 1037-1372 | RRR_FFF_cb.test |
-| CRP2 | June-July 2022 | 1373-1622 | RRR_FFF_A_cb.txt |
+| CRP2 | June-July 2022 | 1373-1622 | RRR_FFF_A_cb.test |
 | CRP3 | September 2022 | 1623- | RRR_FFF_A_cb.test |
 | CRP2 | November 2022 | | |
 
