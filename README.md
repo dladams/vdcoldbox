@@ -164,15 +164,15 @@ Cosmic runs from Laura Zambelli (https://indico.fnal.gov/event/57419):
 
 | Date | E-field | Date | Runs |
 |---|---|---|---|
-| CRP2 | nominal | 7/13/2022 | 1521-4, 1527-31 |
+| CRP2 | nominal | July 13, 2022 | 1521-4, 1527-31 |
 | | | July 18, 2022 | 1543-47 |
 | | | July 19, 2022 | 1553-55 |
-| CRP3 | nominal | 10/11/2022 | 1723-24 |
+| CRP3 | nominal | October 11, 2022 | 1723-24 |
 | | | October 12, 2022 | 1727-43  |
 | | | October 14, 2022 | 1779 |
 | | | October 15, 2022 | 1797 |
-| CRP2 | high | 11/3/2022| 1857-71 |
-| | nominal | November 3, 2022 | 1883-86, 1892 |
+| CRP2 | high | November 3, 2022| 1857-71 |
+| | nominal | November 4, 2022 | 1883-86, 1892 |
 | | high | November 4, 2022 | 1893, 1895-98 |
 
 The nominal HV setting is (-1260, -360, 0, 900) V and high is (-1400, -450, 0, 950) V.
