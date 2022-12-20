@@ -1,0 +1,60 @@
+#!/bin/sh
+
+# Read the flags.
+DET=
+while true; do
+  if [ $# -lt 2 -o "$1" = "-h" ]; then
+    echo "Usage $0 [-t] [-b] ACT RUN [OPT]"
+    echo "  ACT: Top level fcl is ACT.fcl"
+    echo "  RUN: run number"
+    echo "  OPT: option for duneproc, e.g. retry"
+    exit 0
+  elif [ ${1:0:1} != '-' ]; then
+    break
+  else:
+    echo Invalid flag:$1
+    exit 1
+  fi
+  shift
+done
+
+ACT=$1
+DSNAME=$2
+OPT="$3 $4 $5"
+
+OUTDIR=$HOME/xfer/$(date +%Y)/$(date +%m%d)/$ACT/$DSNAME
+RUNDIR=$ACT/$DSNAME
+
+# Check the fcl exists
+REM=$ACT
+while [ $REM != . ]; do
+  FCL=$(basename $REM)
+  if ! fcldump $FCL.fcl 2>&1 1>/dev/null; then
+    echo Skipping Fcl not found: $FCL.fcl
+    #exit 1
+  fi
+  REM=$(dirname $REM)
+done
+if [ ! -r $OUTDIR ]; then
+  echo Creating output directory $OUTDIR
+  mkdir -p $OUTDIR
+fi
+
+echo duneproc $ACT $DSNAME $OPT
+duneproc $ACT $DSNAME $OPT
+RSTAT=$?
+echo Output directory: $OUTDIR
+if [ $RSTAT -gt 0 ]; then
+  echo ERROR: Processing failed with error $RSTAT
+  exit $RSTAT
+fi
+
+echo Copying view.ipynb to $RUNDIR
+cp view.ipynb $RUNDIR
+
+cp $RUNDIR/*.png $RUNDIR/*.tpad *.root $OUTDIR
+ls -ls $OUTDIR
+
+echo Copying view.ipynb to $RUNDIR
+cp view.ipynb $RUNDIR
+

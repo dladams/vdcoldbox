@@ -12,9 +12,12 @@ services.RawDigitPrepService.ToolNames: [
   digitReader,               # Unpack the digits acd.raw[] and acd.pedestal
   adcSampleFiller,           # Fill acd.samples from acd.raw - pedestal
   vdtcb2_adcScaleAdcToKe,    # Apply (nominal) charge calibration.
+  vdcb_noiseSignalFinder,    # Find signals at 4-sigma
   cht_vdcb2_prp,
+  cht_vdcb2_sig,
   vdcb2_adcChannelPedestalPlotter,
   vdcb2_adcChannelSamRmsPlotter,
+  vdcb2_adcChannelNosigSamRmsPlotter,
   vdcb2_adcChannelSamRms30Plotter,
   vdcb2_adcChannelSamRms50Plotter
 ]

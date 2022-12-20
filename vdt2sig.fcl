@@ -3,7 +3,7 @@
 # David Adams
 # December 2022
 #
-# Run dataprep  with weighted CNR for vertical-drift CRP2+ top data.
+# Run dataprep with weighted CNR and signal finding for vertical-drift CRP2+ top data.
 
 #include "vdcb2t_dataprep.fcl"
 #include "vdcb2_tools.fcl"
@@ -12,16 +12,12 @@ services.RawDigitPrepService.ToolNames: [
   digitReader,               # Unpack the digits acd.raw[] and acd.pedestal
   adcSampleFiller,           # Fill acd.samples from acd.raw - pedestal
   vdtcb2_adcScaleAdcToKe,    # Apply (nominal) charge calibration.
-  vdcb_noiseSignalFinder,    # Find signals at 4-sigma
   vdtcb2_cnr,
-  cht_vdcb2_prp,
-  cht_vdcb2_sig,
-  vdcb2_adcChannelPedestalPlotter,
-  vdcb2_adcChannelSamRmsPlotter,
-  vdcb2_adcChannelNosigSamRmsPlotter,
-  vdcb2_adcChannelSamRms30Plotter,
-  vdcb2_adcChannelSamRms50Plotter
+  vdcb2_adcChannelMedianSamRmsPlotter,
+  adcThresholdSignalFinder,
+  vdcb2_adcChannelSamRmsGetter,
+  adcRoiTreeMaker
 ]
 
 # Prefix for plot file names.
-tools.adcStringBuilder.TpmPrefix: "cnr-"
+#tools.adcStringBuilder.TpmPrefix: "cnr-"
