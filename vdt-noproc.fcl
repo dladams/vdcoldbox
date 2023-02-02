@@ -1,0 +1,18 @@
+# vdt-noproc.fcl
+#
+# David Adams
+# February 2023
+#
+# Run dataprep on raw data for vertical-drift top CRP3 data.
+
+#include "vdcb2t_dataprep.fcl"
+#physics.producers: { caldata: @local::producer_adcprep }
+
+physics.produce: ["caldata"]
+services.RawDigitPrepService.ToolNames: []
+services.RawDigitPrepService.DoWires: false
+
+services.EventContextService: {
+  service_provider: EventContextService
+  LogLevel: 3
+}
