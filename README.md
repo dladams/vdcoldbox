@@ -182,7 +182,7 @@ The second set of CRP2 data were taken after repairing problems causing many dea
 
 ### CRP bottom run periods
 
-Data was taken with CRP4 qnd CRP5 in 2023. One such run o 20616.
+Data was taken with CRP4 qnd CRP5 in 2023. One such run is 20616.
 
 ### More to come...
 
