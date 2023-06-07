@@ -148,7 +148,7 @@ The top-level fcl for these is vdt2proc-XXX.fcl with XXX = raw, cal, cnr and cnw
 duneproc> ./doOneEvent vdt2proc-cal 1727 1
 </pre>
   
-#### CRU top run periods
+#### CRP top run periods
 
 Run periods from Elisabetta and sam:
 
@@ -179,6 +179,10 @@ The nominal HV setting is (-1260, -360, 0, 900) V and high is (-1400, -450, 0, 9
 The above talk includes estimates of field strength and electron lifetime for some
 of these runs.
 The second set of CRP2 data were taken after repairing problems causing many dead channels.
+
+### CRP bottom run periods
+
+Data was taken with CRP4 qnd CRP5 in 2023. One such run o 20616.
 
 ### More to come...
 
