@@ -184,6 +184,11 @@ The second set of CRP2 data were taken after repairing problems causing many dea
 
 Data was taken with CRP4 qnd CRP5 in 2023. One such run is 20616.
 
+| Date | E-field | Date | Runs |
+|---|---|---|---|
+| CRP4 | nominal? |  | 19142 |
+
+
 ### More to come...
 
 ## Tutorials
