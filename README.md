@@ -188,6 +188,8 @@ Data was taken with CRP4 qnd CRP5 in 2023. One such run is 20616.
 |---|---|---|---|
 | CRP4 | nominal? |  | 19142 |
 
+Run sunnary from Laura is [here](https://docs.google.com/spreadsheets/d/1M0jMwS33TttGbs-REGRAopI9uiohMjcxCvUPJjYtd2g/edit#gid=1732682453)
+
 
 ### More to come...
 
