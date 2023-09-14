@@ -211,3 +211,7 @@ Run summary from Laura is [here](https://docs.google.com/spreadsheets/d/1M0jMwS3
 * July 2022 data taken cold with CRP2 (1st full TDE):  
   runs 1521-1524, 1527-1531, 1543-1547, 1553-1555, 1571-1575, 1594-1597, 1604, 1611-1618
 * [Channel mapping](https://indico.fnal.gov/event/55195/contributions/245292/attachments/156692/204617/vg_crp2_cmap.pdf)
+
+### Meetings
+* [TPC cold electronics](https://indico.fnal.gov/category/695)
+* 
