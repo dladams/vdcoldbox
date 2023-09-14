@@ -214,4 +214,4 @@ Run summary from Laura is [here](https://docs.google.com/spreadsheets/d/1M0jMwS3
 
 ### Meetings
 * [TPC cold electronics](https://indico.fnal.gov/category/695)
-* 
+* [ProtoDUNE-VD Simulation and Reconstruction](https://indico.fnal.gov/category/1442)
